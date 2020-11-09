@@ -1,0 +1,19 @@
+{
+  "name": "veldapps-imkl",
+  "version": "1.0.0",
+  "description": "Veldapps package for handling \"kabels en leidingen\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/relluf/veldapps-imkl.git"
+  },
+  "author": "ralph",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/relluf/veldapps-imkl/issues"
+  },
+  "homepage": "https://github.com/relluf/veldapps-imkl#readme"
+}
