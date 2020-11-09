@@ -1,0 +1,1 @@
+define(function(require) {		var urns = require("./urns");		return (urn) => {		var p = urn.toLowerCase().split(":"), key = p[2];		if(urns.hasOwnProperty(p[1]) && urns[p[1]].hasOwnProperty(key)) {			return js.get([p[1], key, p[4]], urns);		}	};});
