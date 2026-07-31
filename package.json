@@ -1,6 +1,6 @@
 {
   "name": "veldapps-imkl",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Veldapps package for handling \"kabels en leidingen\"",
   "main": "index.js",
   "scripts": {
