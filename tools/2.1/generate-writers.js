@@ -1,0 +1,1 @@
+require(["../generate-writers"], (f) => f.apply(this, ["Leveringsinformatie-2.1.xsd", "imkl"]));

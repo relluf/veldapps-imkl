@@ -34,10 +34,10 @@ define(function(require) {
 				if(keys[0] === "imkl:Belang") {
 					return joinNames([obj['imkl:thema'], obj['om:omschrijving']]);
 				}
-				if(keys[0] === "imkl:Bijlage") {
-					var type = (obj['imkl:bijlageType']||"?").split("/").pop();
-					var media = (obj['imkl:bestandMediaType']||"?").split("/").pop();
-				}
+				// if(keys[0] === "imkl:Bijlage") {
+				// 	var type = (js.get('imkl:bijlageType.xlink:href', obj) || (obj['imkl:bijlageType']||"?")).split("/").pop();
+				// 	var media = (obj['imkl:bestandMediaType']||"?").split("/").pop();
+				// }
 				if(keys[0] === "imkl:NEN3610ID") {
 					return obj['imkl:lokaalID'];
 				}
