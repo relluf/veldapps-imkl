@@ -1,10 +1,11 @@
-"use js, ol, proj4, veldapps-ol/proj/RD, veldapps-xml/index, veldapps-xml/gml, veldapps-imkl/gml, bxv/Layers, locale";
+"use js, ol, proj4, veldapps-ol/proj/RD, veldapps-xml/index, veldapps-xml/gml, veldapps-imkl/gml, veldapps-imkl/Document, bxv/Layers, locale";
 
 const ol = require("ol");
 const proj4 = require("proj4");
 const Xml = require("veldapps-xml/index");
 const Gml = require("veldapps-xml/gml");
 const Imkl = require("veldapps-imkl/gml");
+const ImklDocument = require("veldapps-imkl/Document");
 const Layers = require("bxv/Layers");
 const locale_ns = require("locale");
 require("veldapps-ol/proj/RD");
@@ -214,37 +215,11 @@ function olStyleForImklSpec(spec) {
 }
 function parseImklDocument(text, doc, opts) {
 	opts = opts || {};
-	const started = Date.now();
-	const scan = Gml.scan(text, { domain: "imkl", version: Imkl.versionFromText(text), onFeature: Imkl.scanFeature });
-	const index = Gml.index(scan);
-	const layers = Imkl.planLayers(index);
-	const view = Gml.featureView(index);
-	const summary = Gml.summaryView(index, layers);
-	const type = scan.version ? "imkl/" + scan.version : "imkl";
-
-	return {
-		type: type,
-		version: scan.version,
-		root: view,
-		view: view,
-		summary: summary,
-		text: text,
-		imkl: {
-			scan: scan,
-			index: index,
-			layers: layers
-		},
-		timing: {
-			scan: scan.stats.duration,
-			total: Date.now() - started
-		},
-		capabilities: {
-			gml: true,
-			imkl: true,
-			map: true,
-			view: true
-		}
-	};
+	if(opts.parsed && opts.parsed.imkl) return opts.parsed;
+	return ImklDocument.parse(text, {
+		xml: opts.parsed && opts.parsed.xml,
+		version: opts.parsed && opts.parsed.version
+	});
 }
 function documentIdentityFor(action) {
 	const doc = action.vars(["instance"]);

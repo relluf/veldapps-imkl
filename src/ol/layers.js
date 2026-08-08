@@ -3,6 +3,7 @@ define(function(require) {
 	const proj4 = require("proj4");
 	const Gml = require("veldapps-xml/gml");
 	const Imkl = require("veldapps-imkl/gml");
+	const ImklDocument = require("veldapps-imkl/Document");
 	require("veldapps-ol/proj/RD");
 
 	const DEFAULT_TARGET_PROJECTION = "EPSG:28992";
@@ -160,33 +161,8 @@ define(function(require) {
 		return layerKeyForInfo(info) + "/" + selector + suffix;
 	};
 	const parseResource = resource => {
-		const started = Date.now();
 		const text = resourceTextOf(resource);
-		const scan = Gml.scan(text, { domain: "imkl", version: Imkl.versionFromText(text), onFeature: Imkl.scanFeature });
-		const index = Gml.index(scan);
-		const layers = Imkl.planLayers(index);
-		return {
-			type: scan.version ? "imkl/" + scan.version : "imkl",
-			version: scan.version,
-			root: {},
-			view: {},
-			text: text,
-			imkl: {
-				scan: scan,
-				index: index,
-				layers: layers
-			},
-			timing: {
-				scan: scan.stats.duration,
-				total: Date.now() - started
-			},
-			capabilities: {
-				gml: true,
-				imkl: true,
-				map: true,
-				view: true
-			}
-		};
+		return ImklDocument.parse(text);
 	};
 	const isResource = resource => {
 		const text = resourceTextOf(resource);

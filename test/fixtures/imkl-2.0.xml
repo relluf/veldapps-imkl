@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<imkl:GebiedsinformatieLevering
+	xmlns:gml="http://www.opengis.net/gml/3.2"
+	xmlns:imkl="http://www.geostandaarden.nl/imkl/2015/wion/2.0">
+	<gml:featureMember>
+		<imkl:Elektriciteitskabel gml:id="kabel-1">
+			<imkl:geometrie>
+				<gml:LineString srsName="urn:ogc:def:crs:EPSG::28992">
+					<gml:posList>100000 450000 100010 450010</gml:posList>
+				</gml:LineString>
+			</imkl:geometrie>
+		</imkl:Elektriciteitskabel>
+	</gml:featureMember>
+</imkl:GebiedsinformatieLevering>

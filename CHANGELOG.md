@@ -1,4 +1,23 @@
+# `2026/08/07` Adds the package-owned IMKL parser integration
+
+## Normalized IMKL Documents
+
+* Adds [src/Document.js]() as the shared IMKL interpreter, producing the scan, feature index, planned layers, summary/view data, timing, capabilities and package-owned facet URI from source text.
+* Adds [src/profiles/xml.js]() for WION and WIBON namespace recognition and version selection, plus the explicit idempotent installer [src/bxv.js]().
+* Refactors [src/ol/layers.js]() and [src/vcl-comps/Tabs$/Document.imkl.js]() to delegate to the same Document interpreter; the facet reuses parser-provided XML and version metadata when available.
+
+## Public API and contracts
+
+* Adds [src/index.js]() as the public entrypoint for Document parsing and IMKL naming, and turns [src/util.js]() into a deprecation compatibility alias.
+* Adds the positive and generic fallback fixtures [test/fixtures/imkl-2.0.xml]() and [test/fixtures/generic.xml]() with installer, normalized Document and fallback coverage in [test/ParserContract.test.js]().
+* Updates [package.json]() so `npm test` runs the parser contract suite.
+
 # `2026/07/31` IMKL scanning, map layers and 2.1 code generation
+
+## BXV integration contract
+
+* Adds the package-owned IMKL XML profile and an explicit, idempotent `bxv.install()` entrypoint.
+* Adds positive IMKL and generic XML fallback contract fixtures against the shared parser harness.
 
 ## IMKL document pipeline
 
@@ -18,6 +37,7 @@
 
 ## Maintenance and documentation
 
+* Adds `index.js` as the public package entrypoint and deprecates `util.js` as a compatibility alias.
 * Disables the incomplete `imkl:Bijlage` naming override so generic object naming remains available.
 * Removes the obsolete Geonovum concept-library HTML dump from `tools/.js`.
 * Documents the 2.1 generation workflow, the current high-volume scan performance and the remaining PMKL symbol, line, annotation, draw-order and legend gaps.

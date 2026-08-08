@@ -1,1 +1,3 @@
-define(function(require) {		require("./js/nameOf/methods");		return {		parse(doc) {			return doc;		}	};});
+console.warn("deprecated - require veldapps-imkl/index instead");
+
+define(["./index"], (index) => index);
